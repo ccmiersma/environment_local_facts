@@ -53,6 +53,30 @@ class environment_local_facts (
     $user = $::user,
 ) {
 
+    file { '/etc/ansible/':
+	ensure => directory,
+	owner => root,
+	group => root,
+    }
+
+    file { '/etc/facter/':
+	ensure => directory,
+	owner => root,
+	group => root,
+    }
+
+    file { '/etc/ansible/facts.d':
+	ensure => directory,
+	owner => root,
+	group => root,
+    }
+
+    file { '/etc/facter/facts.d':
+	ensure => directory,
+	owner => root,
+	group => root,
+    }
+
     file { '/etc/environment':
 	ensure => file,
 	owner => root,
@@ -60,15 +84,15 @@ class environment_local_facts (
 	content => template("environment_local_facts/environment.erb"),
     }
     
-    # This is the file loaded by the Puppet Agent systemd service.
-    file { '/etc/sysconfig/puppetagent':
+    # This is loaded by facter and the puppet agent.
+    file { '/etc/facter/facts.d/environment.txt':
 	ensure => file,
 	owner => root,
 	group => root,
-	content => template("environment_local_facts/puppetagent.erb"),
+	content => template("environment_local_facts/environment.txt.erb"),
     }
     
-
+    # The FACTER_ values in here will override stuff in static facts
     file { '/etc/profile.d/environment-local-facts.sh':
 	ensure => file,
 	owner => root,
@@ -76,4 +100,52 @@ class environment_local_facts (
 	source => "puppet:///modules/environment_local_facts/environment-local-facts.sh",
     }
 
+    file { '/etc/ansible/facts.d/contact.fact':
+	ensure => file,
+	owner => root,
+	group => root,
+	mode => '0755',
+	source => "puppet:///modules/environment_local_facts/contact.fact",
+    }
+
+    file { '/etc/ansible/facts.d/description.fact':
+	ensure => file,
+	owner => root,
+	group => root,
+	mode => '0755',
+	source => "puppet:///modules/environment_local_facts/description.fact",
+    }
+
+
+    file { '/etc/ansible/facts.d/deployment.fact':
+	ensure => file,
+	owner => root,
+	group => root,
+	mode => '0755',
+	source => "puppet:///modules/environment_local_facts/deployment.fact",
+    }
+
+    file { '/etc/ansible/facts.d/hostgroup.fact':
+	ensure => file,
+	owner => root,
+	group => root,
+	mode => '0755',
+	source => "puppet:///modules/environment_local_facts/hostgroup.fact",
+    }
+
+    file { '/etc/ansible/facts.d/location.fact':
+	ensure => file,
+	owner => root,
+	group => root,
+	mode => '0755',
+	source => "puppet:///modules/environment_local_facts/location.fact",
+    }
+
+    file { '/etc/ansible/facts.d/organization.fact':
+	ensure => file,
+	owner => root,
+	group => root,
+	mode => '0755',
+	source => "puppet:///modules/environment_local_facts/organization.fact",
+    }
 }

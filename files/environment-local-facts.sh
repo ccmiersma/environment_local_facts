@@ -1,16 +1,14 @@
 #!/bin/bash
 
-
-
 # Set default values to configured values if possible, or the constant defaults if not.
-export FACTER_DESCRIPTION=${FACTER_DESCRIPTION:-"Default Description"}
-export FACTER_ORGANIZATION=${FACTER_ORGANIZATION:-"Default Organization"}
-export FACTER_DEPLOYMENT=${FACTER_DEPLOYMENT:-"Default"}
-export FACTER_LOCATION=${FACTER_LOCATION:-"Default"}
-export FACTER_HOSTGROUP=${FACTER_HOSTGROUP:-"all"}
-export FACTER_CONTACT=${FACTER_CONTACT:-"root"}
-export FACTER_USER=${USER:-$FACTER_USER}
-export FACTER_HOME=${HOME:-$FACTER_HOME}
+export FACTER_DESCRIPTION=${DESCRIPTION:-"Default Description"}
+export FACTER_ORGANIZATION=${ORGANIZATION:-"Default Organization"}
+export FACTER_DEPLOYMENT=${DEPLOYMENT:-"Default"}
+export FACTER_LOCATION=${LOCATION:-"Default"}
+export FACTER_HOSTGROUP=${HOSTGROUP:-"all"}
+export FACTER_CONTACT=${CONTACT:-"root"}
+export FACTER_USER=${USER}
+export FACTER_HOME=${HOME}
 
 # If this has been set already, it will carry through. If not, make sure it matches
 # the facter variable. Don't touch USER and HOME, as these are bash variables.
