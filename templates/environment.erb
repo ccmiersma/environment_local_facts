@@ -1,0 +1,21 @@
+# This file is managed by a Puppet module. If this is applied
+# by an external ENC or script with parameters defined elsewhere,
+# these values will be overwritten. If the module is run locally
+# These values may be picked up. The FACTER_ variables override the
+# plain equivalent.
+FACTER_ORGANIZATION="<%= @organization %>"
+FACTER_DESCRIPTION="<%= @description %>"
+FACTER_DEPLOYMENT="<%= @deployment %>"
+FACTER_LOCATION="<%= @location %>"
+FACTER_HOSTGROUP="<%= @hostgroup %>"
+FACTER_CONTACT="<%= @contact %>"
+FACTER_USER="<%= @user %>"
+FACTER_HOME="<%= @home %>"
+# These values will be overridden by profile scripts and overwritten by the FACTER values above.
+ORGANIZATION="<%= @organization %>"
+DESCRIPTION="<%= @description %>"
+DEPLOYMENT="<%= @deployment %>"
+LOCATION="<%= @location %>"
+HOSTGROUP="<%= @hostgroup %>"
+CONTACT="<%= @contact %>"
+
