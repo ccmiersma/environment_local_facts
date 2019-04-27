@@ -6,7 +6,8 @@ build:fedora:
   - make check
   - tito build --test --rpm --srpm
   artifacts:
-    paths: /tmp/tito
+    paths:
+    - /tmp/tito
 
 build:centos:
   image: centos:7
@@ -16,4 +17,5 @@ build:centos:
   - make check
   - tito build --test --rpm --srpm
   artifacts:
-    paths: /tmp/tito
+    paths:
+    - /tmp/tito
