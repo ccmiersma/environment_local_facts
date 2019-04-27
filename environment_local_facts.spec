@@ -29,6 +29,7 @@ make %{?_smp_mflags}
 
 %files
 %defattr(-,root,root)
+/opt/loca/share/puppet/modules/%{name}
 
 %doc
 %license
