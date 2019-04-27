@@ -1,6 +1,6 @@
 Name:		environment_local_facts	
 Version:	0.1.0
-Release:	0%{?dist}
+Release:	1%{?dist}
 Summary:	Puppet module for system environment and local facts
 
 License:	Apache-2.0
@@ -39,3 +39,6 @@ make %{?_smp_mflags}
 
 
 %changelog
+* Sat Apr 27 2019 ccmiersma <ccmiersma@gmail.com> 0.1.0-1
+- new package built with tito
+
