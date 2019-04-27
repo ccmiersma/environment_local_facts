@@ -1,13 +1,13 @@
 
-build: fedora
+build: fedora:
   image: fedora:29
   script:
   - dnf -y install puppet make tito
   - make check
   - tito build --test --rpm
 
-build: centos
-  image: centos
+build: centos:
+  image: centos:7
   script:
   - yum -y install epel-release
   - yum -y install puppet make tito
