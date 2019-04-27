@@ -10,6 +10,8 @@ Source0:	%{name}-%{version}.tar.gz
 BuildRequires:  puppet	
 Requires:	puppet	
 
+%define debug_package %{nil}
+
 %description 
 The module sets a unified set of environment variables and local facts
 for use by shell scripts, Ansible, facter, etc.
