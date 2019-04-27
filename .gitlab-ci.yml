@@ -3,19 +3,21 @@ build:fedora:
   image: fedora:29
   script:
   - dnf -y install puppet make tito
-  - make check
   - tito build --test --rpm
+  - mkdir build
+  - mv /tmp/tito/* build/
   artifacts:
     paths:
-    - /tmp/tito/
+    - build/
 
 build:centos:
   image: centos:7
   script:
   - yum -y install epel-release
   - yum -y install puppet make tito
-  - make check
   - tito build --test --rpm
+  - mkdir build
+  - mv /tmp/tito/* build/
   artifacts:
     paths:
-    - /tmp/tito/
+    - build/
