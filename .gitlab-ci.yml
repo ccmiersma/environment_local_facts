@@ -1,0 +1,6 @@
+image: fedora:29
+
+build:
+  script:
+  - yum -y install puppet make tito
+  - tito build --test --rpm
