@@ -4,7 +4,7 @@ build:fedora:
   script:
   - dnf -y install puppet make tito
   - make check
-  - tito build --test --rpm --srpm
+  - tito build --test --rpm
   artifacts:
     paths:
     - /tmp/tito
@@ -15,7 +15,7 @@ build:centos:
   - yum -y install epel-release
   - yum -y install puppet make tito
   - make check
-  - tito build --test --rpm --srpm
+  - tito build --test --rpm
   artifacts:
     paths:
     - /tmp/tito
