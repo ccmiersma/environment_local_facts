@@ -4,7 +4,7 @@ Release:	0%{?dist}
 Summary:	Puppet module for system environment and local facts
 
 License:	Apache-2.0
-URL:		
+URL:            https://github.com/ccmiersma/environment_local_facts 		
 Source0:	%{name}-%{version}.tar.gz
 
 BuildRequires:  puppet	
