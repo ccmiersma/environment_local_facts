@@ -1,23 +1,31 @@
+.job_template: &fedora_prep
+  image: fedora
+  before_script:
+    - dnf -y install puppet make tito
 
-build:fedora:
-  image: fedora:29
-  script:
-  - dnf -y install puppet make tito
-  - tito build --test --rpm
-  - mkdir build
-  - mv /tmp/tito/* build/
-  artifacts:
-    paths:
-    - build/
-
-build:centos:
+      
+.job_template: &centos_prep
   image: centos:7
+  before_script:
+    - yum -y install epel-release
+    - yum -y install puppet make tito
+
+      
+.job_template: &build_script
   script:
-  - yum -y install epel-release
-  - yum -y install puppet make tito
   - tito build --test --rpm
   - mkdir build
   - mv /tmp/tito/* build/
   artifacts:
     paths:
-    - build/
+    - build/*
+
+fedora:
+  stage: build
+  <<: *fedora_prep
+  <<: *build_script
+
+centos:
+  stage: build
+  <<: *centos_prep
+  <<: *build_script
