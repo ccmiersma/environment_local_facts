@@ -10,6 +10,13 @@
     - yum -y install epel-release
     - yum -y install puppet make tito
 
+
+.job_template: &amazonlinux_prep
+  image: amazonlinux
+  before_script:
+    - amazon-linux-extras install -y epel
+    - yum -y install puppet make tito
+
       
 .job_template: &build_script
   script:
@@ -29,3 +36,9 @@ centos:
   stage: build
   <<: *centos_prep
   <<: *build_script
+
+amazonlinux:
+  stage: build
+  <<: *amazonlinux_prep
+  <<: *build_script
+
