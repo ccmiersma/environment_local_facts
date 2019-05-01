@@ -20,7 +20,7 @@
       
 .job_template: &build_script
   script:
-  - tito build --install --test --rpm
+  - tito build --test --rpm
   - mkdir build
   - find /tmp/tito/ -name *.rpm -exec mv {} build \;
   artifacts:
@@ -37,7 +37,7 @@ make:
   stage: build
   image: fedora
   before_script:
-    - dnf -y install puppet make
+    - dnf -y install puppet make findutils
   script:
     - make
     - make check
