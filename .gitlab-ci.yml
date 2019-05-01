@@ -20,9 +20,30 @@
       
 .job_template: &build_script
   script:
-  - tito build --test --rpm
+  - tito build --install --test --rpm
   - mkdir build
-  - mv /tmp/tito/* build/
+  - find /tmp/tito/ -name *.rpm -exec mv {} build \;
+  artifacts:
+    paths:
+    - build/*
+
+stages:
+  - build
+  - package
+  - test
+
+
+make:
+  stage: build
+  image: fedora
+  before_script:
+    - dnf -y install puppet make
+  script:
+    - make
+    - make check
+    - make install
+    - make clean
+    - make
   artifacts:
     paths:
     - build/*
@@ -43,10 +64,13 @@ amazonlinux:
   <<: *build_script
 
 package:
-  stage: test
+  stage: package
   image: fedora
   script:
-    - ls build
+    - dnf -y builddep build/*.fc*.src.rpm
+    - rpm -ivh build/*.fc*.src.rpm
+    - rpmbuild -ba ~/build/SPECS/*.spec
+    - find ~/rpmbuild/ -name *.rpm  -exec mv {} build \;
   artifacts:
     paths:
     - build/*
