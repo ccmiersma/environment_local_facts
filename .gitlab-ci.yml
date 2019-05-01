@@ -42,3 +42,12 @@ amazonlinux:
   <<: *amazonlinux_prep
   <<: *build_script
 
+package:
+  stage: test
+  image: fedora
+  script:
+    - ls build
+  artifacts:
+    paths:
+    - build/*
+

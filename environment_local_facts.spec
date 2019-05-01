@@ -7,7 +7,7 @@ License:	Apache-2.0
 URL:            https://github.com/ccmiersma/environment_local_facts 		
 Source0:	%{name}-%{version}.tar.gz
 
-BuildRequires:  puppet	
+BuildRequires:  puppet make rpm-build	
 Requires:	puppet	
 
 %define debug_package %{nil}
