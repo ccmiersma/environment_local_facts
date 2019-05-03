@@ -67,6 +67,7 @@ package:
   stage: package
   image: fedora
   script:
+    - dnf -y install dnf-plugins-core
     - dnf -y builddep build/*.fc*.src.rpm
     - rpm -ivh build/*.fc*.src.rpm
     - rpmbuild -ba ~/build/SPECS/*.spec
