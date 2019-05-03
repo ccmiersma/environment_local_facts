@@ -20,7 +20,7 @@
       
 .job_template: &build_script
   script:
-  - tito build --test --rpm
+  - tito build --test --srpm
   - mkdir build
   - find /tmp/tito/ -name *.rpm -exec mv {} build \;
   artifacts:
@@ -63,7 +63,7 @@ amazonlinux:
   <<: *amazonlinux_prep
   <<: *build_script
 
-package:
+package-fedora:
   stage: package
   image: fedora
   script:
@@ -71,8 +71,33 @@ package:
     - dnf -y builddep build/*.fc*.src.rpm
     - rpm -ivh build/*.fc*.src.rpm
     - rpmbuild -ba ~/rpmbuild/SPECS/*.spec
-    - find ~/rpmbuild/ -name *.rpm  -exec mv {} build \;
+    - find ~/rpmbuild/RPMS/ -name *.rpm  -exec mv {} build \;
   artifacts:
     paths:
     - build/*
 
+package-centos:
+  stage: package
+  image: centos
+  script:
+    - yum -y install yum-utils
+    - yum-builddep -y build/*.fc*.src.rpm
+    - rpm -ivh build/*.el*.src.rpm
+    - rpmbuild -ba ~/rpmbuild/SPECS/*.spec
+    - find ~/rpmbuild/RPMS/ -name *.rpm  -exec mv {} build \;
+  artifacts:
+    paths:
+    - build/*
+
+package-amazonlinux:
+  stage: package
+  image: centos
+  script:
+    - yum -y install yum-utils
+    - yum-builddep -y build/*.amzn2*.src.rpm
+    - rpm -ivh build/*.el*.src.rpm
+    - rpmbuild -ba ~/rpmbuild/SPECS/*.spec
+    - find ~/rpmbuild/RPMS/ -name *.rpm  -exec mv {} build \;
+  artifacts:
+    paths:
+    - build/*

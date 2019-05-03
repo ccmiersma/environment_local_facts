@@ -2,7 +2,9 @@ all: build
 
 build: 
 	puppet module build
-	mv pkg build
+	mkdir build
+	mv pkg/*.tar.gz build
+	rm -rf pkg
 
 .PHONY: check
 check:  build
