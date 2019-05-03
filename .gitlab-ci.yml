@@ -70,7 +70,7 @@ package:
     - dnf -y install dnf-plugins-core
     - dnf -y builddep build/*.fc*.src.rpm
     - rpm -ivh build/*.fc*.src.rpm
-    - rpmbuild -ba ~/build/SPECS/*.spec
+    - rpmbuild -ba ~/rpmbuild/SPECS/*.spec
     - find ~/rpmbuild/ -name *.rpm  -exec mv {} build \;
   artifacts:
     paths:
